@@ -1,0 +1,38 @@
+From f45bf90f1b63dc21ef3af62ee48d6f055f08a303 Mon Sep 17 00:00:00 2001
+From: Jan Chaloupka <jchaloup@redhat.com>
+Date: Fri, 8 Jun 2018 16:53:55 +0200
+Subject: [PATCH] Remove tests with non-existing pflag.Value.Type() method
+
+---
+ schema/types/resource/quantity_test.go | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/schema/types/resource/quantity_test.go b/schema/types/resource/quantity_test.go
+index 5f2e7be..96cc84a 100644
+--- a/schema/types/resource/quantity_test.go
++++ b/schema/types/resource/quantity_test.go
+@@ -24,7 +24,6 @@ import (
+ 	"unicode"
+ 
+ 	fuzz "github.com/google/gofuzz"
+-	"github.com/spf13/pflag"
+ 
+ 	inf "gopkg.in/inf.v0"
+ )
+@@ -1033,13 +1032,6 @@ func TestQFlagSet(t *testing.T) {
+ 	}
+ }
+ 
+-func TestQFlagIsPFlag(t *testing.T) {
+-	var pfv pflag.Value = qFlag{}
+-	if e, a := "quantity", pfv.Type(); e != a {
+-		t.Errorf("Unexpected result %v != %v", e, a)
+-	}
+-}
+-
+ func TestSub(t *testing.T) {
+ 	tests := []struct {
+ 		a        Quantity
+-- 
+2.7.5
+
